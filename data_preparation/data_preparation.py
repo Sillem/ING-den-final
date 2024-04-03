@@ -36,11 +36,11 @@ def create_new_features(X : pd.DataFrame):
 
     #percent of incomes that go to current_acount
     for month in range(0, 13):
-        X[f"incPerCurrentAccountBalance{month}"] = np.min(X[f"inc_transactions_H{month}"]/X[f"Current_amount_balance_H{month}"], 100)
+        X[f"incPerCurrentAccountBalance{month}"] = np.minimum(X[f"inc_transactions_H{month}"]/X[f"Current_amount_balance_H{month}"], 100)
         
     #percent of incomes that go to savings_account
     for month in range(0, 13):
-        X[f"incPerSavingsAccountBalance{month}"] = np.min(X[f"inc_transactions_H{month}"]/X[f"Savings_amount_balance_H{month}"], 100)
+        X[f"incPerSavingsAccountBalance{month}"] = np.minimum(X[f"inc_transactions_H{month}"]/X[f"Savings_amount_balance_H{month}"], 100)
 
 
 def transform_data(X : pd.DataFrame):
