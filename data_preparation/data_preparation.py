@@ -16,7 +16,24 @@ def transform_data(X : pd.DataFrame):
                 types[feature[1]['Type']].append((feature[1]['Column name*'][:-1]+str(lag)).replace(' ', '_'))
         else:
             types[feature[1]['Type']].append(feature[1]['Column name*'].replace(' ', '_'))
+    features_to_drop = (X.loc[:, (np.mean(X.isna(), axis=0) > 0).values].isna()).any().index
+    types['Created'] = []
+    
+    # create features that need missing values
+    types['Created'].append('hasExternal_credit_card_balance')
+    types['Created'].append('hasExternal_term_loan_balance')
+    types['Created'].append('hasExternal_mortgage_balance')
+    types['Created'].append('hasActive_credit_card_lines')
+    types['Created'].append('hasActive_mortgages')
 
-    # at this time we include only numeric features
-    return X[types['Integer'] + types['Float'] + types['Integer (0-330)'] + types['Integer (0 or 1)']], X['Target']
+    X['hasExternal_credit_card_balance'] = ~pd.isna(X['External_credit_card_balance'])
+    X['hasExternal_term_loan_balance'] = ~pd.isna(X['External_term_loan_balance'])
+    X['hasExternal_mortgage_balance'] = ~pd.isna(X['External_mortgage_balance'])
+    X['hasActive_credit_card_lines'] = ~pd.isna(X['Active_credit_card_lines'])
+    X['hasActive_mortgages'] = ~pd.isna(X['Active_mortgages'])
 
+    # here we drop features that are missing, at this point we have 
+    X = X.drop(features_to_drop, axis=1)
+
+    
+    return X.drop(['Target'], axis=1), X['Target']
