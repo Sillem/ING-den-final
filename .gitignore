@@ -2,3 +2,5 @@
 datasets/in_time.csv
 datasets/out_of_time.csv
 data_preparation/__pycache__
+main.py
+.ipynb_checkpoints/*
