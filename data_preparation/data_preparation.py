@@ -25,7 +25,7 @@ def create_new_features(X : pd.DataFrame):
 
     #quartile sum of os_credit_card
     for idx, quarter in enumerate([0, 3, 6, 9]):
-        X[f"Os_credit_card_Quartile{idx+1}"] = X[f"Os_credit_card_H{quarter}"] + X[f"Os_term_loan_H{quarter+1}"] + X[f"Os_term_loan_H{quarter+2}"]
+        X[f"Os_credit_card_Quartile{idx+1}"] = X[f"Os_credit_card_H{quarter}"] + X[f"Os_credit_card_H{quarter+1}"] + X[f"Os_credit_card_H{quarter+2}"]
 
     #quartile sum of os_mortgage
     for idx, quarter in enumerate([0, 3, 6, 9]):
