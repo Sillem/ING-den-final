@@ -61,7 +61,7 @@ def transform_data(X : pd.DataFrame):
     #features_to_drop = (X.loc[:, (np.mean(X.isna(), axis=0) > 0).values].isna()).any().index
     features_to_drop = ['Active_mortgages', 'Active_credit_card_lines',
        'External_term_loan_balance', 'External_mortgage_balance',
-       'External_credit_card_balance', 'limit_in_revolving_l`oans_H12',
+       'External_credit_card_balance', 'limit_in_revolving_loans_H12',
        'limit_in_revolving_loans_H11', 'limit_in_revolving_loans_H10',
        'limit_in_revolving_loans_H9', 'limit_in_revolving_loans_H8',
        'limit_in_revolving_loans_H7', 'limit_in_revolving_loans_H6',
