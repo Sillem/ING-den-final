@@ -36,4 +36,4 @@ def transform_data(X : pd.DataFrame):
     X = X.drop(features_to_drop, axis=1)
 
     
-    return X.drop(['Target'], axis=1), X['Target']
+    return X.drop(['Target'] + types['MM-YYYY'] + types['DD-MM-YYYY'], axis=1), X['Target']
