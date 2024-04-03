@@ -36,11 +36,11 @@ def create_new_features(X : pd.DataFrame):
 
     #percent of incomes that go to current_acount
     for month in range(0, 13):
-        X[f"incPerCurrentAccountBalance{month}"] = X[f"inc_transactions_H{month}"]/X[f"Current_amount_balance_H{month}"]
+        X[f"incPerCurrentAccountBalance{month}"] = np.min(X[f"inc_transactions_H{month}"]/X[f"Current_amount_balance_H{month}"], 100)
         
     #percent of incomes that go to savings_account
     for month in range(0, 13):
-        X[f"incPerSavingsAccountBalance{month}"] = X[f"inc_transactions_H{month}"]/X[f"Savings_amount_balance_H{month}"]
+        X[f"incPerSavingsAccountBalance{month}"] = np.min(X[f"inc_transactions_H{month}"]/X[f"Savings_amount_balance_H{month}"], 100)
 
 
 def transform_data(X : pd.DataFrame):
@@ -61,7 +61,7 @@ def transform_data(X : pd.DataFrame):
     #features_to_drop = (X.loc[:, (np.mean(X.isna(), axis=0) > 0).values].isna()).any().index
     features_to_drop = ['Active_mortgages', 'Active_credit_card_lines',
        'External_term_loan_balance', 'External_mortgage_balance',
-       'External_credit_card_balance', 'limit_in_revolving_loans_H12',
+       'External_credit_card_balance', 'limit_in_revolving_l`oans_H12',
        'limit_in_revolving_loans_H11', 'limit_in_revolving_loans_H10',
        'limit_in_revolving_loans_H9', 'limit_in_revolving_loans_H8',
        'limit_in_revolving_loans_H7', 'limit_in_revolving_loans_H6',
