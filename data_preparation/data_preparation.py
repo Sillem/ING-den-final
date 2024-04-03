@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 
 def transform_data(X : pd.DataFrame):
     X = X.copy()
